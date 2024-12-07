@@ -12,8 +12,33 @@
             <h1>On The Shelf</h1>
         </div>
         <div class="nav">
-            <button class="add-btn">Add Book</button>
+            <button class="add-btn" data-popup-target="#popup">Add Book</button>
         </div>
+    </div>
+    <div class="popup" id="popup">
+        <div class="popup-header">
+            <div class="popup-header-text">
+                Add Book
+            </div>
+            <button class="close-btn" data-close-btn>
+                &times;
+            </button>
+        </div>
+        <form class="form-body" action="">
+            <label for="">Title</label>
+            <input type="text" name="" id="">
+            <label for="">Author</label>
+            <input type="text">
+            <label for="">Number of pages</label>
+            <input type="text" name="" id="">
+            <div>
+                <input type="radio">
+                <input type="radio">
+            </div>
+        </form>
+    </div>
+    <div id="overlay">
+
     </div>
     <div class="main">
         <div class="book">

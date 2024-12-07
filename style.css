@@ -47,6 +47,62 @@ h1 {
     font-size: var(--font-size-small);
 }
 
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    /* Change scale back to 0 when done styling with form */
+    transition: 200ms ease-in-out;
+    border: 1px solid var(--color-black);
+    border-radius: 8px;
+    z-index: 10;
+    background-color: var(--color-white);
+    width: 50%;
+    max-width: 60%;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.popup-header-text {
+/* Add Styles */
+}
+
+.close-btn {
+/* Add Styles */
+}
+
+.popup.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.form-body {
+    display: flex;
+    flex-direction: column;
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
 .main {
     border: 1px solid var(--color-black);
     border-radius: 10px;
