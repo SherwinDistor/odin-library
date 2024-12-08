@@ -24,17 +24,33 @@
                 &times;
             </button>
         </div>
-        <form class="form-body" action="">
-            <label for="">Title</label>
-            <input type="text" name="" id="">
-            <label for="">Author</label>
-            <input type="text">
-            <label for="">Number of pages</label>
-            <input type="text" name="" id="">
-            <div>
-                <input type="radio">
-                <input type="radio">
-            </div>
+        <form class="form-body" action="" id="add-book-form">
+            <fieldset>
+                <legend>Add Book Form</legend>
+                <div class="book-inputs">
+                    <label for="book-title">Title</label>
+                    <input type="text" name="title" id="book-title">
+                </div>
+                <div class="book-inputs">
+                    <label for="book-author">Author</label>
+                    <input type="text" name="author" id="book-author">
+                </div>
+                <div class="book-inputs">
+                    <label for="page-number">Number of pages</label>
+                    <input type="number" name="pages" id="page-number">
+                </div>
+                <div class="radio-btn">
+                    <div>
+                        <label for="book-read">Read</label>
+                        <input type="radio" name="book-status" id="book-read">
+                    </div>
+                    <div>
+                        <label for="book-not-read">Not read</label>
+                        <input type="radio" name="book-status" id="book-not-read">
+                    </div>
+                </div>
+                <button id="submit-btn" form="add-book-form" value="submit" type="submit">Submit</button>
+            </fieldset>
         </form>
     </div>
     <div id="overlay">
@@ -42,7 +58,15 @@
     </div>
     <div class="main">
         <div class="book">
-
+            <div class="book-details">
+                <h2>Game of Thrones</h2>
+                <h3>George R.R. Martin</h3>
+                <p>Pages: 720</p>
+            </div>
+            <div class="book-edit-btn">
+                <button>Edit</button>
+                <button>Remove</button>
+            </div>
         </div>
         <div class="book">
 

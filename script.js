@@ -10,14 +10,63 @@ function Book(title, author, pages, isRead) {
 }
 
 // Create a function to add a new book into the library array
-function addBookToLibrary(newBook) {
+function addBookToLibrary() {
+    const title = document.querySelector('#book-title').value;
+
+    console.log(title);
+    
+    newBook = new Book(title);
+
     myLibrary.push(newBook);
 }
+
+
+// const gameOfThrones = new Book('Game Of Thrones', 'Sherwin', 768, false);
+
+// console.log(myLibrary)
+
+// addBookToLibrary(gameOfThrones)
 
 // Create a function that displays each book on the shelf, using a loop
 function displayBooks() {
     
+    myLibrary.forEach((book) => {
+        
+        // Get reference fo the main div
+        const mainDiv = document.querySelector(".main");
+
+        // Create new div
+        let bookDiv = document.createElement("div");
+
+        // Add "book" class
+        bookDiv.classList.add("book");
+
+        // Append child new div to main div
+        mainDiv.appendChild(bookDiv);
+        
+
+        let bookDetailsDiv = document.createElement("div");
+        bookDetailsDiv.classList.add("book-details")
+        bookDiv.appendChild(bookDetailsDiv);
+
+        // Work on the book-edit-button creation
+
+
+        let titleEl = document.createElement('h2');
+        titleEl.textContent = book.title;
+        bookDetailsDiv.appendChild(titleEl)
+
+        let authorEl = document.createElement('h3');
+        authorEl.textContent = book.author;
+        bookDetailsDiv.appendChild(authorEl);
+
+        let pagesEl = document.createElement('p');
+        pagesEl.textContent = `Pages: ${book.pages}`;
+        bookDetailsDiv.appendChild(pagesEl);
+    })
 }
+
+displayBooks();
 
 // Add a button for adding a new book, input results into the book function and call the add a new book to library function
 const openAddBookPopupBtn = document.querySelector('[data-popup-target]');
@@ -51,6 +100,11 @@ function closePopup(popup) {
     popup.classList.remove('active');
     overlay.classList.remove('active');
 }
+
+// 
+
+const submitBtn = document.getElementById('submit-btn');
+submitBtn.addEventListener('click', addBookToLibrary)
 
 // Create a function to remove a specific book from the library
 // Add a button to delete or remove the book from the library
