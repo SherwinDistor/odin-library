@@ -10,22 +10,26 @@ function Book(title, author, pages, isRead) {
 }
 
 // Create a function to add a new book into the library array
-function addBookToLibrary() {
-    const title = document.querySelector('#book-title').value;
-
-    console.log(title);
+function addBookToLibrary(event) {
+    event.preventDefault();
     
-    newBook = new Book(title);
+    const title = document.querySelector('#book-title').value;
+    const author = document.querySelector('#book-author').value;
+    const pages = document.querySelector('#page-number').value;
+    let isRead = document.querySelector('#book-read').value;
+    
+    if (isRead === 'on') {
+        isRead = true;
+    } else {
+        isRead = false;
+    }
 
+    const newBook = new Book(title, author, pages, isRead);
+    
     myLibrary.push(newBook);
+
+    displayBooks();
 }
-
-
-// const gameOfThrones = new Book('Game Of Thrones', 'Sherwin', 768, false);
-
-// console.log(myLibrary)
-
-// addBookToLibrary(gameOfThrones)
 
 // Create a function that displays each book on the shelf, using a loop
 function displayBooks() {
@@ -66,7 +70,7 @@ function displayBooks() {
     })
 }
 
-displayBooks();
+
 
 // Add a button for adding a new book, input results into the book function and call the add a new book to library function
 const openAddBookPopupBtn = document.querySelector('[data-popup-target]');
