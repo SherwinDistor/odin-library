@@ -34,15 +34,13 @@ function addBookToLibrary(event) {
     displayBooks();
 
     clearInput();
-
 }
 
 // Create a function that displays each book on the shelf, using a loop
 function displayBooks() {
 
-    myLibrary.forEach((book) => {
-        
-        // Get reference fo the main div
+    for (let book = myLibrary.length - 1; book < myLibrary.length; book++) {
+// Get reference fo the main div
         const mainDiv = document.querySelector(".main");
 
         // Create new div
@@ -65,23 +63,21 @@ function displayBooks() {
         
         // Book details creation
         let titleEl = document.createElement('h2');
-        titleEl.textContent = book.title;
+        titleEl.textContent = myLibrary[book].title;
         bookDetailsDiv.appendChild(titleEl);
         
         let authorEl = document.createElement('h3');
-        authorEl.textContent = book.author;
+        authorEl.textContent = myLibrary[book].author;
         bookDetailsDiv.appendChild(authorEl);
         
         let pagesEl = document.createElement('p');
-        pagesEl.textContent = `Pages: ${book.pages}`;
+        pagesEl.textContent = `Pages: ${myLibrary[book].pages}`;
         bookDetailsDiv.appendChild(pagesEl);
 
         let isReadEl = document.createElement('div');
         isReadEl.classList.add('isRead');
-        isReadEl.textContent = book.isRead === true ? 'Read' : 'Not Read';
+        isReadEl.textContent = myLibrary[book].isRead === true ? 'Read' : 'Not Read';
         bookDetailsDiv.appendChild(isReadEl);
-
-        console.log(book.isRead);
 
         // button creation
         let editBtn = document.createElement('button');
@@ -93,7 +89,63 @@ function displayBooks() {
         removeBtn.id = "remove-btn";
         removeBtn.textContent = 'Remove';
         bookEditBtn.appendChild(removeBtn);
-    })
+    }
+
+
+    // myLibrary.forEach((book) => {
+        
+    //     // Get reference fo the main div
+    //     const mainDiv = document.querySelector(".main");
+
+    //     // Create new div
+    //     let bookDiv = document.createElement("div");
+
+    //     // Add "book" class
+    //     bookDiv.classList.add("book");
+
+    //     // Append child new div to main div
+    //     mainDiv.appendChild(bookDiv);
+        
+    //     // Book details and Button div creation
+    //     let bookDetailsDiv = document.createElement("div");
+    //     bookDetailsDiv.classList.add("book-details");
+    //     bookDiv.appendChild(bookDetailsDiv);
+
+    //     let bookEditBtn = document.createElement('div');
+    //     bookEditBtn.classList.add('book-edit-btn');
+    //     bookDiv.appendChild(bookEditBtn);
+        
+    //     // Book details creation
+    //     let titleEl = document.createElement('h2');
+    //     titleEl.textContent = book.title;
+    //     bookDetailsDiv.appendChild(titleEl);
+        
+    //     let authorEl = document.createElement('h3');
+    //     authorEl.textContent = book.author;
+    //     bookDetailsDiv.appendChild(authorEl);
+        
+    //     let pagesEl = document.createElement('p');
+    //     pagesEl.textContent = `Pages: ${book.pages}`;
+    //     bookDetailsDiv.appendChild(pagesEl);
+
+    //     let isReadEl = document.createElement('div');
+    //     isReadEl.classList.add('isRead');
+    //     isReadEl.textContent = book.isRead === true ? 'Read' : 'Not Read';
+    //     bookDetailsDiv.appendChild(isReadEl);
+
+    //     console.log(book.isRead);
+
+    //     // button creation
+    //     let editBtn = document.createElement('button');
+    //     editBtn.id = "edit-btn";
+    //     editBtn.textContent = 'Edit';
+    //     bookEditBtn.appendChild(editBtn);
+    
+    //     let removeBtn = document.createElement('button');
+    //     removeBtn.id = "remove-btn";
+    //     removeBtn.textContent = 'Remove';
+    //     bookEditBtn.appendChild(removeBtn);
+    // })
 }
 
 
@@ -143,11 +195,9 @@ function clearInput() {
 }
 
 // Create a function to remove a specific book from the library
-// Add a button to delete or remove the book from the library
-// Add a button for each book to change the read status
-
-
-// Clear display
-function clearDisplay() {
+function removeBook() {
     
 }
+
+// Add a button to delete or remove the book from the library
+// Add a button for each book to change the read status
