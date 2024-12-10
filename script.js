@@ -1,5 +1,9 @@
 // Create Array to store books
-const myLibrary = [];
+const myLibrary = [
+
+];
+
+const bookShelf = document.querySelector('.main')
 
 // Create a function to construct a book with given information
 function Book(title, author, pages, isRead) {
@@ -9,9 +13,12 @@ function Book(title, author, pages, isRead) {
     this.isRead = isRead;
 }
 
+Book.prototype.changeRead = function () {
+    this.isRead = !this.isRead;
+}
+
 // Create a function to add a new book into the library array
-function addBookToLibrary(event) {
-    event.preventDefault();
+function addBookToLibrary() {
     
     const title = document.querySelector('#book-title').value;
     const author = document.querySelector('#book-author').value;
@@ -36,11 +43,16 @@ function addBookToLibrary(event) {
     clearInput();
 }
 
+
+
 // Create a function that displays each book on the shelf, using a loop
 function displayBooks() {
 
-    for (let book = myLibrary.length - 1; book < myLibrary.length; book++) {
-// Get reference fo the main div
+    bookShelf.innerHTML = '';
+
+    myLibrary.map((book, index) => {
+        
+        // Get reference fo the main div
         const mainDiv = document.querySelector(".main");
 
         // Create new div
@@ -63,89 +75,40 @@ function displayBooks() {
         
         // Book details creation
         let titleEl = document.createElement('h2');
-        titleEl.textContent = myLibrary[book].title;
+        titleEl.textContent = book.title;
         bookDetailsDiv.appendChild(titleEl);
         
         let authorEl = document.createElement('h3');
-        authorEl.textContent = myLibrary[book].author;
+        authorEl.textContent = book.author;
         bookDetailsDiv.appendChild(authorEl);
         
         let pagesEl = document.createElement('p');
-        pagesEl.textContent = `Pages: ${myLibrary[book].pages}`;
+        pagesEl.textContent = `Pages: ${book.pages}`;
         bookDetailsDiv.appendChild(pagesEl);
-
-        let isReadEl = document.createElement('div');
-        isReadEl.classList.add('isRead');
-        isReadEl.textContent = myLibrary[book].isRead === true ? 'Read' : 'Not Read';
-        bookDetailsDiv.appendChild(isReadEl);
 
         // button creation
         let editBtn = document.createElement('button');
         editBtn.id = "edit-btn";
-        editBtn.textContent = 'Edit';
+        editBtn.dataset.index = index;
+        editBtn.textContent = book.isRead === true ? 'Read' : 'Unread';
+        editBtn.addEventListener('click', () => {
+            myLibrary[index].changeRead();
+            displayBooks();
+        })
         bookEditBtn.appendChild(editBtn);
-    
+        
+
+        // remove button and function
         let removeBtn = document.createElement('button');
         removeBtn.id = "remove-btn";
+        removeBtn.dataset.index = index;
         removeBtn.textContent = 'Remove';
+        removeBtn.addEventListener('click', () => {
+            myLibrary.splice(index, 1);
+            displayBooks();
+        })
         bookEditBtn.appendChild(removeBtn);
-    }
-
-
-    // myLibrary.forEach((book) => {
-        
-    //     // Get reference fo the main div
-    //     const mainDiv = document.querySelector(".main");
-
-    //     // Create new div
-    //     let bookDiv = document.createElement("div");
-
-    //     // Add "book" class
-    //     bookDiv.classList.add("book");
-
-    //     // Append child new div to main div
-    //     mainDiv.appendChild(bookDiv);
-        
-    //     // Book details and Button div creation
-    //     let bookDetailsDiv = document.createElement("div");
-    //     bookDetailsDiv.classList.add("book-details");
-    //     bookDiv.appendChild(bookDetailsDiv);
-
-    //     let bookEditBtn = document.createElement('div');
-    //     bookEditBtn.classList.add('book-edit-btn');
-    //     bookDiv.appendChild(bookEditBtn);
-        
-    //     // Book details creation
-    //     let titleEl = document.createElement('h2');
-    //     titleEl.textContent = book.title;
-    //     bookDetailsDiv.appendChild(titleEl);
-        
-    //     let authorEl = document.createElement('h3');
-    //     authorEl.textContent = book.author;
-    //     bookDetailsDiv.appendChild(authorEl);
-        
-    //     let pagesEl = document.createElement('p');
-    //     pagesEl.textContent = `Pages: ${book.pages}`;
-    //     bookDetailsDiv.appendChild(pagesEl);
-
-    //     let isReadEl = document.createElement('div');
-    //     isReadEl.classList.add('isRead');
-    //     isReadEl.textContent = book.isRead === true ? 'Read' : 'Not Read';
-    //     bookDetailsDiv.appendChild(isReadEl);
-
-    //     console.log(book.isRead);
-
-    //     // button creation
-    //     let editBtn = document.createElement('button');
-    //     editBtn.id = "edit-btn";
-    //     editBtn.textContent = 'Edit';
-    //     bookEditBtn.appendChild(editBtn);
-    
-    //     let removeBtn = document.createElement('button');
-    //     removeBtn.id = "remove-btn";
-    //     removeBtn.textContent = 'Remove';
-    //     bookEditBtn.appendChild(removeBtn);
-    // })
+    })
 }
 
 
@@ -194,10 +157,4 @@ function clearInput() {
     document.querySelector('#page-number').value = '';
 }
 
-// Create a function to remove a specific book from the library
-function removeBook() {
-    
-}
-
-// Add a button to delete or remove the book from the library
-// Add a button for each book to change the read status
+displayBooks()
