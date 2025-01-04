@@ -5,12 +5,14 @@ const myLibrary = [
 
 const bookShelf = document.querySelector('.main')
 
-// Create a function to construct a book with given information
-function Book(title, author, pages, isRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
+// Create a class with a constructor to construct a book with given information
+class Book {
+    constructor(title, author, pages, isRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+    }
 }
 
 Book.prototype.changeRead = function () {
